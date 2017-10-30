@@ -1,0 +1,3 @@
+Nombre: Israel, Direccion: Mi casa, Telefono: 1234578900
+Nombre: Mario, Direccion: la casa de el, Telefono: 1234578900
+Nombre: alejadro, Direccion: mx, Telefono: 1234578900

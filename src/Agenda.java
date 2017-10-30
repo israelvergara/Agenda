@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class Agenda
@@ -32,5 +34,17 @@ public class Agenda
         {
             System.out.println(c);
         }
+    }
+
+    public void guardar(String s) throws IOException
+    {
+        FileWriter archivo = new FileWriter(s);
+
+        for (Contacto c: contactos)
+             {
+                 archivo.write(c.toString() + "\n");
+
+        }
+        archivo.close();
     }
 }

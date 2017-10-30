@@ -6,6 +6,10 @@ public class Contacto
 
     public Contacto(String nom, String dir, long tel)
     {
+        if(nom.isEmpty())
+        {
+            throw new IllegalArgumentException("El nombre no puede esta vácio");
+        }
         if (nom.charAt(0) >= 'a' && nom.charAt(0) <= 'z'
                 || nom.charAt(0) >= 'A' && nom.charAt(0) <= 'Z')
         {
@@ -20,6 +24,7 @@ public class Contacto
         }
         dir = dir.trim();// regresa una copia y quita los espacios del inicio y al final
         if(dir.isEmpty()){
+
             throw new IllegalArgumentException("La direccion no debe estar vacia");
         }
         else{
