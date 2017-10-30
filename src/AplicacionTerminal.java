@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AplicacionTerminal
@@ -14,11 +16,11 @@ public class AplicacionTerminal
         Contacto c2 = new Contacto("Mario", "la casa de el", 1234578900L );
         Contacto c3 = new Contacto("alejadro", "mx", 1234578900L );
 
-        //Agenda agenda = new Agenda();
-        this.agenda.agregaContacto(c1);
-        this.agenda.agregaContacto(c2);
-        this.agenda.agregaContacto(c3);
-        this.agenda.imprimeTodo();
+
+        agenda.agregaContacto(c1);
+        agenda.agregaContacto(c2);
+        agenda.agregaContacto(c3);
+        agenda.imprimeTodo();
     }
 
     public void entradaUsuario() {
@@ -27,11 +29,14 @@ public class AplicacionTerminal
 
         do {
             try {
-                System.out.println("Opciones agregar - imprimir - terminar");
+                System.out.println("Opciones agregar - guardar -imprimir - terminar");
                 opcion = entrada.nextLine();
                 switch (opcion) {
                     case "agregar":
                         agregar(entrada);
+                        break;
+                    case "guardar":
+                        guardar(entrada);
                         break;
                     case "imprimir":
                         agenda.imprimeTodo();
@@ -43,8 +48,28 @@ public class AplicacionTerminal
                 System.out.print(ex.getMessage());
                 opcion = "";
             }
+            catch(InputMismatchException ex)
+            {
+                System.out.println("El telefono debe tener digitos unicamente");
+                opcion = "";
+            }
+            catch (IOException e)
+            {
+                //e.printStackTrace();
+                System.out.println("Nombre no Valido");
+                opcion = "";
+            }
+
         } while (opcion != "terminar");
     }
+
+    private void guardar(Scanner entrada) throws IOException
+    {
+        System.out.print("Nombre del Archivo: ");
+        String nomArchivo = entrada.nextLine();
+        agenda.guardar(nomArchivo);
+    }
+
 
     private void agregar(Scanner entrada) {
         System.out.println("Agregar un contacto nuevo");
@@ -61,6 +86,8 @@ public class AplicacionTerminal
 
     public static void main(String[] args) {
         AplicacionTerminal aplicacion = new AplicacionTerminal();
+
+        aplicacion.demo();
         aplicacion.entradaUsuario();
 
     }
