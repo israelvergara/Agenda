@@ -1,3 +1,5 @@
+import java.security.PrivilegedActionException;
+
 public class Contacto
 {
     private String nombre;
@@ -48,5 +50,10 @@ public class Contacto
     public String toString() {
 
         return "Nombre: " + nombre + ", " + "Direccion: " + direccion + ", " + "Telefono: "+ telefono;
+    }
+
+    public long dimeTel()
+    {
+        return telefono;
     }
 }
